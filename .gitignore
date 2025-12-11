@@ -1,0 +1,4 @@
+__pycache__/
+pool/
+shared/
+smb.conf/
