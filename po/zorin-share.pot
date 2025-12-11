@@ -1,0 +1,246 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Samuele Gallicani
+# This file is distributed under the same license as the Zorin Share package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Zorin Share 1.0.0\n"
+"Report-Msgid-Bugs-To: samu.gallicani@gmail.com\n"
+"POT-Creation-Date: 2025-12-11 16:58+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: dialogs.py:13
+msgid "Add Shared Folder"
+msgstr ""
+
+#: dialogs.py:57 dialogs.py:304
+msgid "Read Only"
+msgstr ""
+
+#: dialogs.py:62 dialogs.py:311
+msgid "Guest Access"
+msgstr ""
+
+#: dialogs.py:70 dialogs.py:321
+msgid "Advanced Options (For Expert Users)"
+msgstr ""
+
+#: dialogs.py:83 dialogs.py:334
+msgid "Directory Mask:"
+msgstr ""
+
+#: dialogs.py:91 dialogs.py:342
+msgid "Create Mask:"
+msgstr ""
+
+#: dialogs.py:99 dialogs.py:350
+msgid "Allow Browsing"
+msgstr ""
+
+#: dialogs.py:110 dialogs.py:359
+msgid "Valid Users:"
+msgstr ""
+
+#: dialogs.py:132 dialogs.py:389
+msgid "Enter username..."
+msgstr ""
+
+#: dialogs.py:136 dialogs.py:393
+msgid "Add"
+msgstr ""
+
+#: dialogs.py:140 dialogs.py:397
+msgid "Remove"
+msgstr ""
+
+#: dialogs.py:158 dialogs.py:417 dialogs.py:524
+msgid "Cancel"
+msgstr ""
+
+#: dialogs.py:163 dialogs.py:517 dialogs.py:524
+msgid "OK"
+msgstr ""
+
+#: dialogs.py:169 dialogs.py:452
+msgid "Cancel clicked"
+msgstr ""
+
+#: dialogs.py:200
+msgid "OK clicked"
+msgstr ""
+
+#: dialogs.py:220
+msgid "Creating SharedFolder from dialog inputs"
+msgstr ""
+
+#: dialogs.py:228
+#, python-brace-format
+msgid ""
+"[ERROR] Cannot create shared folder: Missing required fields: {name} {path} "
+"{comment}"
+msgstr ""
+
+#: dialogs.py:229 dialogs.py:234 dialogs.py:488 dialogs.py:493
+msgid "Error"
+msgstr ""
+
+#: dialogs.py:229 dialogs.py:488
+msgid "Missing required fields: Name, Path, and Comment are required."
+msgstr ""
+
+#: dialogs.py:233
+#, python-brace-format
+msgid "[ERROR] Cannot create shared folder: Path does not exist: {path}"
+msgstr ""
+
+#: dialogs.py:234
+#, python-brace-format
+msgid "Path does not exist: {path}"
+msgstr ""
+
+#: dialogs.py:251 dialogs.py:510
+msgid "Dialog cancelled"
+msgstr ""
+
+#: dialogs.py:256 main.py:119
+msgid "Edit Shared Folder"
+msgstr ""
+
+#: dialogs.py:280
+msgid "Name:"
+msgstr ""
+
+#: dialogs.py:288
+msgid "Folder Path:"
+msgstr ""
+
+#: dialogs.py:296
+msgid "Comment:"
+msgstr ""
+
+#: dialogs.py:422
+msgid "Save"
+msgstr ""
+
+#: dialogs.py:459
+msgid "Save clicked"
+msgstr ""
+
+#: dialogs.py:479
+msgid "Updating SharedFolder from dialog inputs"
+msgstr ""
+
+#: dialogs.py:487
+#, python-brace-format
+msgid ""
+"[ERROR] Cannot edit shared folder: Missing required fields: {name} {path} "
+"{comment}"
+msgstr ""
+
+#: dialogs.py:492
+msgid "[ERROR] Cannot edit shared folder: Path does not exist: {}"
+msgstr ""
+
+#: dialogs.py:493
+msgid "Path does not exist: {}"
+msgstr ""
+
+#: main.py:33
+msgid "Refresh List"
+msgstr ""
+
+#: main.py:34
+msgid "About"
+msgstr ""
+
+#: main.py:35
+msgid "Quit"
+msgstr ""
+
+#: main.py:70
+msgid "New Shared Folder"
+msgstr ""
+
+#: main.py:95
+msgid "Unnamed Folder"
+msgstr ""
+
+#: main.py:96
+msgid "Read-Only"
+msgstr ""
+
+#: main.py:96
+msgid "Writable"
+msgstr ""
+
+#: main.py:97
+msgid "Guests allowed"
+msgstr ""
+
+#: main.py:97
+msgid "Guests not allowed"
+msgstr ""
+
+#: main.py:99
+msgid "Path"
+msgstr ""
+
+#: main.py:127
+msgid "Delete Shared Folder"
+msgstr ""
+
+#: main.py:137
+msgid "Add Shared Folder Dialog opened"
+msgstr ""
+
+#: main.py:143
+msgid "Add Shared Folder Dialog closed"
+msgstr ""
+
+#: main.py:145
+msgid "New folder to add: "
+msgstr ""
+
+#: main.py:152
+msgid "Edit Shared Folder Dialog opened"
+msgstr ""
+
+#: main.py:158
+msgid "Edit Shared Folder Dialog closed"
+msgstr ""
+
+#: main.py:160
+msgid "Folder edited: "
+msgstr ""
+
+#: main.py:171
+msgid "Are you sure you want to delete the shared folder "
+msgstr ""
+
+#: main.py:173
+msgid "This action cannot be undone."
+msgstr ""
+
+#: shared_elements.py:7
+msgid "Shared Folder"
+msgstr ""
+
+#: utils.py:31 utils.py:110
+msgid "[ERROR] Config file not found: {}"
+msgstr ""
+
+#: utils.py:34 utils.py:113
+msgid "[ERROR] Permission denied reading: {}"
+msgstr ""
+
+#: utils.py:133 utils.py:145
+msgid "[ERROR] Permission denied writing to: {}"
+msgstr ""

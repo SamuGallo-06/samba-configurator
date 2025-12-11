@@ -4,12 +4,13 @@ from gi.repository import (
     Gtk,
     GObject
 )
+from i18n import _
 import os, sys
 from shared_elements  import SharedFolder
 
 class AddFolderDialog(Gtk.Window):
     def __init__(self, parent):
-        super().__init__(title="Add Shared Folder", transient_for=parent)
+        super().__init__(title=_("Add Shared Folder"), transient_for=parent)
         self.set_modal(True)
         self.set_default_size(400, 250)
 
@@ -53,12 +54,12 @@ class AddFolderDialog(Gtk.Window):
         grid.attach(self.commentEntry, 1, 2, 1, 1)
 
         # Read Only
-        self.readOnlyCheck = Gtk.CheckButton(label="Read Only")
+        self.readOnlyCheck = Gtk.CheckButton(label=_("Read Only"))
         self.readOnlyCheck.set_halign(Gtk.Align.START)
         grid.attach(self.readOnlyCheck, 0, 3, 2, 1)
 
         # Guest OK
-        self.guestOkCheck = Gtk.CheckButton(label="Guest Access")
+        self.guestOkCheck = Gtk.CheckButton(label=_("Guest Access"))
         self.guestOkCheck.set_halign(Gtk.Align.START)
         grid.attach(self.guestOkCheck, 0, 4, 2, 1)
 
@@ -66,7 +67,7 @@ class AddFolderDialog(Gtk.Window):
         # Advanced options hidden section to prevent unsophisticated users from modifying them
         #____________________________________________________________________________________________
 
-        advancedOptionsSection = Gtk.Expander.new("Advanced Options (For Expert Users)")
+        advancedOptionsSection = Gtk.Expander.new(_("Advanced Options (For Expert Users)"))
         advancedOptionsSection.set_expanded(False)
         grid.attach(advancedOptionsSection, 0, 5, 2, 1)
 
@@ -79,7 +80,7 @@ class AddFolderDialog(Gtk.Window):
         advancedOptionsGrid.attach(separator, 0, 0, 2, 1)
 
         # Directory Mask
-        directoryMaskLabel = Gtk.Label(label="Directory Mask:")
+        directoryMaskLabel = Gtk.Label(label=_("Directory Mask:"))
         directoryMaskLabel.set_halign(Gtk.Align.START)
         self.directoryMaskEntry = Gtk.Entry()
         self.directoryMaskEntry.set_text("0755")
@@ -87,7 +88,7 @@ class AddFolderDialog(Gtk.Window):
         advancedOptionsGrid.attach(self.directoryMaskEntry, 1, 1, 1, 1)
 
         # Create Mask
-        createMaskLabel = Gtk.Label(label="Create Mask:")
+        createMaskLabel = Gtk.Label(label=_("Create Mask:"))
         createMaskLabel.set_halign(Gtk.Align.START)
         self.createMaskEntry = Gtk.Entry()
         self.createMaskEntry.set_text("0755")
@@ -95,7 +96,7 @@ class AddFolderDialog(Gtk.Window):
         advancedOptionsGrid.attach(self.createMaskEntry, 1, 2, 1, 1)
 
         # Browseable
-        self.browseableCheck = Gtk.CheckButton(label="Allow Browsing")
+        self.browseableCheck = Gtk.CheckButton(label=_("Allow Browsing"))
         self.browseableCheck.set_halign(Gtk.Align.START)
         self.browseableCheck.set_active(True)
         advancedOptionsGrid.attach(self.browseableCheck, 0, 3, 2, 1)
@@ -106,7 +107,7 @@ class AddFolderDialog(Gtk.Window):
         # Valid Users List (Inside advanced Options)
         #____________________________________________________________________________________________
 
-        validUsersLabel = Gtk.Label(label="Valid Users:")
+        validUsersLabel = Gtk.Label(label=_("Valid Users:"))
         validUsersLabel.set_halign(Gtk.Align.START)
         validUsersLabel.set_valign(Gtk.Align.START)
         advancedOptionsGrid.attach(validUsersLabel, 0, 4, 1, 1)
@@ -128,15 +129,15 @@ class AddFolderDialog(Gtk.Window):
         buttonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=5)
         
         self.validUsersEntry = Gtk.Entry()
-        self.validUsersEntry.set_placeholder_text("Enter username...")
+        self.validUsersEntry.set_placeholder_text(_("Enter username..."))
         self.validUsersEntry.set_hexpand(True)
         buttonBox.append(self.validUsersEntry)
         
-        addUserButton = Gtk.Button(label="Add")
+        addUserButton = Gtk.Button(label=_("Add"))
         addUserButton.connect("clicked", self.OnAddValidUser)
         buttonBox.append(addUserButton)
         
-        removeUserButton = Gtk.Button(label="Remove")
+        removeUserButton = Gtk.Button(label=_("Remove"))
         removeUserButton.connect("clicked", self.OnRemoveValidUser)
         buttonBox.append(removeUserButton)
         
@@ -154,18 +155,18 @@ class AddFolderDialog(Gtk.Window):
         vbox.append(button_box)
 
         #Cancel Button
-        cancel_button = Gtk.Button(label="Cancel")
+        cancel_button = Gtk.Button(label=_("Cancel"))
         cancel_button.connect("clicked", self.OnCancelClicked)
         button_box.append(cancel_button)
 
         #OK Button
-        ok_button = Gtk.Button(label="OK")
+        ok_button = Gtk.Button(label=_("OK"))
         ok_button.get_style_context().add_class("suggested-action")
         ok_button.connect("clicked", self.OnOkClicked)
         button_box.append(ok_button)
 
     def OnCancelClicked(self, button):
-        print("Cancel clicked")
+        print(_("Cancel clicked"))
         self._response = Gtk.ResponseType.CANCEL
         if hasattr(self, '_loop'):
             self._loop.quit()
@@ -196,7 +197,7 @@ class AddFolderDialog(Gtk.Window):
         return users
 
     def OnOkClicked(self, button):
-        print("OK clicked")
+        print(_("OK clicked"))
         self._response = Gtk.ResponseType.OK
         if hasattr(self, '_loop'):
             self._loop.quit()
@@ -216,7 +217,7 @@ class AddFolderDialog(Gtk.Window):
         self._loop.run() 
         
         if self._response == Gtk.ResponseType.OK:
-            print("Creating SharedFolder from dialog inputs")
+            print(_("Creating SharedFolder from dialog inputs"))
             name = self.nameEntry.get_text()
             path = self.pathEntry.get_text()
             comment = self.commentEntry.get_text()
@@ -224,13 +225,13 @@ class AddFolderDialog(Gtk.Window):
             guest_ok = self.guestOkCheck.get_active()
 
             if(path == "" or comment == "" or name == ""):
-                print(f"[ERROR] Cannot create shared folder: Missing required fields: {"{name}" if name == '' else ''} {"{path}" if path == '' else ''} {"{comment}" if comment == '' else ''}")
-                MessageDialog("Error", "Missing required fields: Name, Path, and Comment are required.", self)
+                print(_('[ERROR] Cannot create shared folder: Missing required fields: {name} {path} {comment}').format(name="{name}" if name == '' else '', path="{path}" if path == '' else '', comment="{comment}" if comment == '' else ''))
+                MessageDialog(_("Error"), _("Missing required fields: Name, Path, and Comment are required."), self)
                 return None
             
             if(not os.path.exists(path)):
-                print(f"[ERROR] Cannot create shared folder: Path does not exist: {path}")
-                MessageDialog("Error", f"Path does not exist: {path}", self)
+                print(_('[ERROR] Cannot create shared folder: Path does not exist: {path}').format(path=path))
+                MessageDialog(_("Error"), _("Path does not exist: {path}").format(path=path), self)
                 return None
 
             folder = SharedFolder(
@@ -247,12 +248,12 @@ class AddFolderDialog(Gtk.Window):
             )
             return folder
         else:
-            print("Dialog cancelled")
+            print(_("Dialog cancelled"))
             return None
         
 class EditFolderDialog(Gtk.Window):
     def __init__(self, parent, folder:SharedFolder=None):
-        super().__init__(title="Edit Shared Folder", transient_for=parent)
+        super().__init__(title=_("Edit Shared Folder"), transient_for=parent)
         self.set_modal(True)
         self.set_default_size(400, 250)
 
@@ -276,7 +277,7 @@ class EditFolderDialog(Gtk.Window):
         #_____________________________________________________________________________________________
 
         # Name Path
-        nameLabel = Gtk.Label(label="Name:")
+        nameLabel = Gtk.Label(label=_("Name:"))
         nameLabel.set_halign(Gtk.Align.START)
         self.nameEntry = Gtk.Entry()
         self.nameEntry.set_text(self.originalFolder.name if self.originalFolder else "")
@@ -284,7 +285,7 @@ class EditFolderDialog(Gtk.Window):
         grid.attach(self.nameEntry, 1, 0, 1, 1)
 
         # Folder Path
-        pathLabel = Gtk.Label(label="Folder Path:")
+        pathLabel = Gtk.Label(label=_("Folder Path:"))
         pathLabel.set_halign(Gtk.Align.START)
         self.pathEntry = Gtk.Entry()
         self.pathEntry.set_text(self.originalFolder.path if self.originalFolder else "")
@@ -292,7 +293,7 @@ class EditFolderDialog(Gtk.Window):
         grid.attach(self.pathEntry, 1, 1, 1, 1)
 
         # Comment
-        commentLabel = Gtk.Label(label="Comment:")
+        commentLabel = Gtk.Label(label=_("Comment:"))
         commentLabel.set_halign(Gtk.Align.START)
         self.commentEntry = Gtk.Entry()
         self.commentEntry.set_text(self.originalFolder.comment if self.originalFolder else "")
@@ -300,14 +301,14 @@ class EditFolderDialog(Gtk.Window):
         grid.attach(self.commentEntry, 1, 2, 1, 1)
 
         # Read Only
-        self.readOnlyCheck = Gtk.CheckButton(label="Read Only")
+        self.readOnlyCheck = Gtk.CheckButton(label=_("Read Only"))
         self.readOnlyCheck.set_halign(Gtk.Align.START)
         if self.originalFolder:
             self.readOnlyCheck.set_active(self.originalFolder.read_only == "yes")
         grid.attach(self.readOnlyCheck, 0, 3, 2, 1)
 
         # Guest OK
-        self.guestOkCheck = Gtk.CheckButton(label="Guest Access")
+        self.guestOkCheck = Gtk.CheckButton(label=_("Guest Access"))
         self.guestOkCheck.set_halign(Gtk.Align.START)
         if self.originalFolder:
             self.guestOkCheck.set_active(self.originalFolder.guest_ok == "yes")
@@ -317,7 +318,7 @@ class EditFolderDialog(Gtk.Window):
         # Advanced options hidden section to prevent unsophisticated users from modifying them
         #____________________________________________________________________________________________
 
-        advancedOptionsSection = Gtk.Expander.new("Advanced Options (For Expert Users)")
+        advancedOptionsSection = Gtk.Expander.new(_("Advanced Options (For Expert Users)"))
         advancedOptionsSection.set_expanded(False)
         grid.attach(advancedOptionsSection, 0, 5, 2, 1)
 
@@ -330,7 +331,7 @@ class EditFolderDialog(Gtk.Window):
         advancedOptionsGrid.attach(separator, 0, 0, 2, 1)
 
         # Directory Mask
-        directoryMaskLabel = Gtk.Label(label="Directory Mask:")
+        directoryMaskLabel = Gtk.Label(label=_("Directory Mask:"))
         directoryMaskLabel.set_halign(Gtk.Align.START)
         self.directoryMaskEntry = Gtk.Entry()
         self.directoryMaskEntry.set_text(self.originalFolder.directory_mask if self.originalFolder else "")
@@ -338,7 +339,7 @@ class EditFolderDialog(Gtk.Window):
         advancedOptionsGrid.attach(self.directoryMaskEntry, 1, 1, 1, 1)
 
         # Create Mask
-        createMaskLabel = Gtk.Label(label="Create Mask:")
+        createMaskLabel = Gtk.Label(label=_("Create Mask:"))
         createMaskLabel.set_halign(Gtk.Align.START)
         self.createMaskEntry = Gtk.Entry()
         self.createMaskEntry.set_text(self.originalFolder.create_mask if self.originalFolder else "")
@@ -346,7 +347,7 @@ class EditFolderDialog(Gtk.Window):
         advancedOptionsGrid.attach(self.createMaskEntry, 1, 2, 1, 1)
 
         # Browseable
-        self.browseableCheck = Gtk.CheckButton(label="Allow Browsing")
+        self.browseableCheck = Gtk.CheckButton(label=_("Allow Browsing"))
         self.browseableCheck.set_halign(Gtk.Align.START)
         self.browseableCheck.set_active(self.originalFolder.browseable == "yes" if self.originalFolder else True)
         advancedOptionsGrid.attach(self.browseableCheck, 0, 3, 2, 1)
@@ -355,7 +356,7 @@ class EditFolderDialog(Gtk.Window):
         # Valid Users List (Inside advanced Options)
         #____________________________________________________________________________________________
 
-        validUsersLabel = Gtk.Label(label="Valid Users:")
+        validUsersLabel = Gtk.Label(label=_("Valid Users:"))
         validUsersLabel.set_halign(Gtk.Align.START)
         validUsersLabel.set_valign(Gtk.Align.START)
         advancedOptionsGrid.attach(validUsersLabel, 0, 4, 1, 1)
@@ -385,15 +386,15 @@ class EditFolderDialog(Gtk.Window):
         buttonBox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=5)
         
         self.validUsersEntry = Gtk.Entry()
-        self.validUsersEntry.set_placeholder_text("Enter username...")
+        self.validUsersEntry.set_placeholder_text(_("Enter username..."))
         self.validUsersEntry.set_hexpand(True)
         buttonBox.append(self.validUsersEntry)
         
-        addUserButton = Gtk.Button(label="Add")
+        addUserButton = Gtk.Button(label=_("Add"))
         addUserButton.connect("clicked", self.OnAddValidUser)
         buttonBox.append(addUserButton)
         
-        removeUserButton = Gtk.Button(label="Remove")
+        removeUserButton = Gtk.Button(label=_("Remove"))
         removeUserButton.connect("clicked", self.OnRemoveValidUser)
         buttonBox.append(removeUserButton)
         
@@ -413,12 +414,12 @@ class EditFolderDialog(Gtk.Window):
         vbox.append(button_box)
 
         #Cancel Button
-        cancel_button = Gtk.Button(label="Cancel")
+        cancel_button = Gtk.Button(label=_("Cancel"))
         cancel_button.connect("clicked", self.OnCancelClicked)
         button_box.append(cancel_button)
 
         #Save Button
-        ok_button = Gtk.Button(label="Save")
+        ok_button = Gtk.Button(label=_("Save"))
         ok_button.get_style_context().add_class("suggested-action")
         ok_button.connect("clicked", self.OnSave)
         button_box.append(ok_button)
@@ -448,14 +449,14 @@ class EditFolderDialog(Gtk.Window):
         return users
 
     def OnCancelClicked(self, button):
-        print("Cancel clicked")
+        print(_("Cancel clicked"))
         self._response = Gtk.ResponseType.CANCEL
         if hasattr(self, '_loop'):
             self._loop.quit()
         self.destroy()
 
     def OnSave(self, button):
-        print("Save clicked")
+        print(_("Save clicked"))
         self._response = Gtk.ResponseType.OK
         if hasattr(self, '_loop'):
             self._loop.quit()
@@ -475,7 +476,7 @@ class EditFolderDialog(Gtk.Window):
         self._loop.run() 
         
         if self._response == Gtk.ResponseType.OK:
-            print("Updating SharedFolder from dialog inputs")
+            print(_("Updating SharedFolder from dialog inputs"))
             name = self.nameEntry.get_text()
             path = self.pathEntry.get_text()
             comment = self.commentEntry.get_text()
@@ -483,13 +484,13 @@ class EditFolderDialog(Gtk.Window):
             guest_ok = self.guestOkCheck.get_active()
 
             if(path == "" or comment == "" or name == ""):
-                print(f"[ERROR] Cannot edit shared folder: Missing required fields: {"{name}" if name == '' else ''} {"{path}" if path == '' else ''} {"{comment}" if comment == '' else ''}")
-                MessageDialog("Error", "Missing required fields: Name, Path, and Comment are required.", self)
+                print(_('[ERROR] Cannot edit shared folder: Missing required fields: {name} {path} {comment}').format(name="{name}" if name == '' else '', path="{path}" if path == '' else '', comment="{comment}" if comment == '' else ''))
+                MessageDialog(_("Error"), _("Missing required fields: Name, Path, and Comment are required."), self)
                 return None
             
             if(not os.path.exists(path)):
-                print(f"[ERROR] Cannot edit shared folder: Path does not exist: {path}")
-                MessageDialog("Error", f"Path does not exist: {path}", self)
+                print(_('[ERROR] Cannot edit shared folder: Path does not exist: {}').format(path))
+                MessageDialog(_("Error"), _("Path does not exist: {}").format(path), self)
                 return None
 
             newFolder = SharedFolder(
@@ -506,21 +507,21 @@ class EditFolderDialog(Gtk.Window):
             )
             return newFolder
         else:
-            print("Dialog cancelled")
+            print(_("Dialog cancelled"))
             return None
 
 def MessageDialog(mTitle: str, mMessage: str, parent: Gtk.Window):
     dialog = Gtk.AlertDialog()
     dialog.set_message(mMessage)
     dialog.set_modal(True)
-    dialog.set_buttons(["OK"])
+    dialog.set_buttons([_("OK")])
     dialog.choose(parent, None, lambda _obj, _result: None)
 
 def CriticalDialog(mTitle: str, mMessage: str, parent: Gtk.Window, accept:callable, cancel:callable):
     dialog = Gtk.AlertDialog()
     dialog.set_message(mMessage)
     dialog.set_modal(True)
-    dialog.set_buttons(["Cancel", "OK"])
+    dialog.set_buttons([_("Cancel"), _("OK")])
     dialog.set_cancel_button(0)
     dialog.set_default_button(1)
     

@@ -1,0 +1,14 @@
+# Gettext Configuration for Zorin Share
+# This file sets default values for translation file creation
+
+# Translator information
+export TRANSLATOR_NAME="Samuele Gallicani"
+export TRANSLATOR_EMAIL="samu.gallicani@gmail.com"
+
+# Project information
+export PROJECT_NAME="Zorin Share"
+export PROJECT_VERSION="1.0.0"
+export BUGS_ADDRESS="samu.gallicani@gmail.com"
+
+# You can source this file before running gettext commands:
+# source .gettext-config && msginit ...

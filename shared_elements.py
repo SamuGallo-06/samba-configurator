@@ -1,9 +1,10 @@
 import os
 from dataclasses import dataclass, field
+from i18n import _
 
 @dataclass
 class SharedFolder:
-    comment: str = "Shared Folder"
+    comment: str = _("Shared Folder")
     name: str = ""
     path: str = ""
     read_only: bool = False

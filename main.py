@@ -6,9 +6,11 @@ gi.require_version('Gtk', '4.0')
 from gi.repository import Gtk, Gio
 from dialogs import AddFolderDialog, EditFolderDialog
 
+from i18n import _ # Import translation function
+
 class ZorinShare(Gtk.Application):
     def __init__(self):
-        super().__init__(application_id="com.zorinos.zorinshare", flags=gi.repository.Gio.ApplicationFlags.FLAGS_NONE)
+        super().__init__(application_id="com.samugallo06.zorinshare", flags=gi.repository.Gio.ApplicationFlags.FLAGS_NONE)
         self.sharedFolders = []
         self.connect("activate", self.OnActivate)
     
@@ -28,9 +30,9 @@ class ZorinShare(Gtk.Application):
 
         # Create menu model
         self.menu = Gio.Menu()
-        self.menu.append("Refresh List", "app.refresh")
-        self.menu.append("About", "app.about")
-        self.menu.append("Quit", "app.quit")
+        self.menu.append((_('Refresh List')), "app.refresh")
+        self.menu.append(_("About"), "app.about")
+        self.menu.append(_("Quit"), "app.quit")
         
         self.menuButton.set_menu_model(self.menu)
         
@@ -65,7 +67,7 @@ class ZorinShare(Gtk.Application):
         scrolledWindow.set_vexpand(True)
 
         # Add Folder Button
-        addButton = Gtk.Button(label="New Shared Folder")
+        addButton = Gtk.Button(label=_("New Shared Folder"))
         addButton.set_hexpand(True)
         addButton.set_margin_top(10)
         addButton.connect("clicked", self.OnAddFolder)
@@ -75,7 +77,7 @@ class ZorinShare(Gtk.Application):
         window.present()
 
     def UpdateList(self):
-        self.sharedFolders = utils.ParseSmbConf("./smb.conf")
+        self.sharedFolders = utils.ParseSmbConf()
 
         # Clear existing items
         while self.listBox.get_first_child() is not None:
@@ -90,11 +92,11 @@ class ZorinShare(Gtk.Application):
             rowBox.set_margin_top(5)
             rowBox.set_margin_bottom(5)
             
-            folderName = folder.name if folder.name else os.path.basename(folder.path) if folder.path else "Unnamed Folder"
-            readOnlyStatus = "<span color='orange'>Read-Only</span>" if folder.read_only else "Writable"
-            guestStatus = "Guests allowed" if folder.guest_ok else "<span color='red'>Guests not allowed</span>"
+            folderName = folder.name if folder.name else os.path.basename(folder.path) if folder.path else _("Unnamed Folder")
+            readOnlyStatus = "<span color='orange'>" + _("Read-Only") + "</span>" if folder.read_only else _("Writable")
+            guestStatus = _("Guests allowed") if folder.guest_ok else "<span color='red'>" + _("Guests not allowed") + "</span>"
 
-            details = f"<b>{folderName}</b>\n<i>{folder.comment}</i>\nPath: {folder.path}\n{readOnlyStatus}\n{guestStatus}{'' if not folder.valid_users else f'\n<span color="green">Restricted Users</span>'}"
+            details = f"<b>{folderName}</b>\n<i>{folder.comment}</i>\n" + _("Path") + f": {folder.path}\n{readOnlyStatus}\n{guestStatus}{'' if not folder.valid_users else f'\n<span color=\"green\"> {_("Restricted Users")} </span>'}"
 
             detailsLabel = Gtk.Label(
                 label=details, 
@@ -114,7 +116,7 @@ class ZorinShare(Gtk.Application):
             editButton = Gtk.Button(child=editIcon)
             editButton.set_valign(Gtk.Align.CENTER)
             contentBox.append(editButton)
-            editButton.set_tooltip_text("Edit Shared Folder")
+            editButton.set_tooltip_text(_("Edit Shared Folder"))
             editButton.connect("clicked", self.OnEditFolder, folder)
 
             # Delete Button
@@ -122,7 +124,7 @@ class ZorinShare(Gtk.Application):
             deleteButton = Gtk.Button(child=deleteIcon)
             deleteButton.set_valign(Gtk.Align.CENTER)
             contentBox.append(deleteButton)
-            deleteButton.set_tooltip_text("Delete Shared Folder")
+            deleteButton.set_tooltip_text(_("Delete Shared Folder"))
             deleteButton.connect("clicked", self.OnDeleteFolder, folder)
 
 
@@ -132,30 +134,30 @@ class ZorinShare(Gtk.Application):
 
     def OnAddFolder(self, button):
         dialog = AddFolderDialog(self.get_active_window())
-        print("Add Shared Folder Dialog opened")
+        print(_("Add Shared Folder Dialog opened"))
         dialog.set_modal(True)
         dialog.set_default_size(400, 300)
         dialog.set_resizable(False)
         dialog.set_deletable(False)
         newFolder = dialog.Run()
-        print("Add Shared Folder Dialog closed")
+        print(_("Add Shared Folder Dialog closed"))
         if newFolder:
-            print(f"New folder to add: {newFolder.path}")
+            print(_("New folder to add: ") + newFolder.path)
             self.sharedFolders.append(newFolder)
             utils.AddShareToSmbConf(newFolder)
             self.UpdateList()
 
     def OnEditFolder(self, button, folder:SharedFolder):
         dialog = EditFolderDialog(self.get_active_window(), folder)
-        print("Edit Shared Folder Dialog opened")
+        print(_("Edit Shared Folder Dialog opened"))
         dialog.set_modal(True)
         dialog.set_default_size(400, 300)
         dialog.set_resizable(False)
         dialog.set_deletable(False)
         result = dialog.Run()
-        print("Edit Shared Folder Dialog closed")
+        print(_("Edit Shared Folder Dialog closed"))
         if result:
-            print(f"Folder edited: {folder.path}")
+            print(_("Folder edited: ") + folder.path)
             utils.UpdateShareInSmbConf(folder, result)
         self.UpdateList()
     
@@ -166,9 +168,9 @@ class ZorinShare(Gtk.Application):
             modal=True,
             message_type=Gtk.MessageType.WARNING,
             buttons=Gtk.ButtonsType.OK_CANCEL,
-            text=f"Are you sure you want to delete the shared folder '{folder.name}'?"
+            text=_("Are you sure you want to delete the shared folder " + folder.name + "?")
         )
-        messageDialog.format_secondary_text("This action cannot be undone.")
+        messageDialog.format_secondary_text(_("This action cannot be undone."))
         response = messageDialog.run()
         messageDialog.destroy()
         if response == Gtk.ResponseType.OK:

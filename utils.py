@@ -1,5 +1,6 @@
 from shared_elements import SharedFolder
 import os
+from i18n import _
 
 SMB_CONF_PATH = "./smb.conf"
 
@@ -27,10 +28,10 @@ def ParseSmbConf(configPath: str = SMB_CONF_PATH) -> list:
                 with open(configPath, "r") as f:
                         smbConf = f.read()
         except FileNotFoundError:
-                print(f"[ERROR] Config file not found: {configPath}")
+                print(_('[ERROR] Config file not found: {}').format(configPath))
                 return []
         except PermissionError:
-                print(f"[ERROR] Permission denied reading: {configPath}")
+                print(_('[ERROR] Permission denied reading: {}').format(configPath))
                 return []
     
         for line in smbConf.splitlines():
@@ -106,10 +107,10 @@ def RemoveShareFromSmbConf(folder: SharedFolder, configPath: str = SMB_CONF_PATH
                 with open(configPath, "r") as f:
                         smbConf = f.read()
         except FileNotFoundError:
-                print(f"[ERROR] Config file not found: {configPath}")
+                print(_('[ERROR] Config file not found: {}').format(configPath))
                 return False
         except PermissionError:
-                print(f"[ERROR] Permission denied reading: {configPath}")
+                print(_('[ERROR] Permission denied reading: {}').format(configPath))
                 return False
         
         # Split the config into sections
@@ -129,7 +130,7 @@ def RemoveShareFromSmbConf(folder: SharedFolder, configPath: str = SMB_CONF_PATH
                 with open(configPath, "w") as f:
                         f.write(newSmbConf)
         except PermissionError:
-                print(f"[ERROR] Permission denied writing to: {configPath}")
+                print(_('[ERROR] Permission denied writing to: {}').format(configPath))
                 return False
         
         return True
@@ -141,7 +142,7 @@ def AddShareToSmbConf(folder: SharedFolder, configPath: str = SMB_CONF_PATH) -> 
                 with open(configPath, "a") as f:
                         f.write('\n' + entry)
         except PermissionError:
-                print(f"[ERROR] Permission denied writing to: {configPath}")
+                print(_('[ERROR] Permission denied writing to: {}').format(configPath))
                 return False
         
         return True
