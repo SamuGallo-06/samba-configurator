@@ -1,0 +1,10 @@
+zorin-share (1.0.0-1) unstable; urgency=medium
+
+  * Initial release
+  * GTK4-based graphical interface for Samba share management
+  * Support for English and Italian languages
+  * Add, edit, and remove shared folders functionality
+  * Permission management (read-only, guest access, valid users)
+  * File and directory mask configuration
+
+ -- Samu Gallicani <samu.gallicani@gmail.com>  Wed, 11 Dec 2024 00:00:00 +0100

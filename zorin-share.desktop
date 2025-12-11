@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Zorin Share
+Comment=Manage Samba shared folders
+Comment[it]=Gestisci cartelle condivise Samba
+Exec=zorin-share
+Icon=folder-remote
+Terminal=false
+Categories=Network;System;Settings;
+Keywords=samba;share;network;folder;
+StartupNotify=true

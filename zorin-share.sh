@@ -1,9 +1,10 @@
 #!/bin/bash
 
+# Change to the application directory
+cd /usr/share/zorin-share || exit 1
+
 if [ "$EUID" -ne 0 ]; then
-  pkexec python3 main.py "$@"
-  exit
-fi
+  pkexec /usr/bin/python3 /usr/share/zorin-share/main.py "$@"
 else
-  python3 main.py "$@"
+  /usr/bin/python3 /usr/share/zorin-share/main.py "$@"
 fi

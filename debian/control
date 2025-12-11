@@ -1,0 +1,22 @@
+Source: zorin-share
+Section: net
+Priority: optional
+Maintainer: Samu Gallicani <samu.gallicani@gmail.com>
+Build-Depends: debhelper-compat (= 13), python3, dh-python, gettext
+Standards-Version: 4.6.0
+Homepage: https://github.com/SamuGallo-06/zorin-share
+
+Package: zorin-share
+Architecture: all
+Depends: ${python3:Depends}, ${misc:Depends}, python3-gi, gir1.2-gtk-4.0, samba, pkexec
+Description: GTK4 application for managing Samba shared folders
+ Zorin Share is a user-friendly graphical application for managing
+ Samba shared folders on Linux systems. It provides an intuitive
+ interface to add, edit, and remove network shares with support
+ for multiple languages (English and Italian).
+ .
+ Features include:
+  - Add and remove Samba shares
+  - Edit share properties (permissions, users, masks)
+  - Support for guest access and read-only shares
+  - Multi-language support based on system locale

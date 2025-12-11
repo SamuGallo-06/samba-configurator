@@ -1,0 +1,40 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@ --with python3 --buildsystem=pybuild
+
+override_dh_auto_build:
+	# Compile translation files
+	msgfmt po/en.po -o locale/en/LC_MESSAGES/zorin-share.mo
+	msgfmt po/it.po -o locale/it/LC_MESSAGES/zorin-share.mo
+
+override_dh_auto_clean:
+	dh_auto_clean
+	rm -f locale/*/LC_MESSAGES/*.mo
+
+override_dh_auto_install:
+	# Install Python modules
+	install -d debian/zorin-share/usr/share/zorin-share
+	install -m 644 main.py debian/zorin-share/usr/share/zorin-share/
+	install -m 644 dialogs.py debian/zorin-share/usr/share/zorin-share/
+	install -m 644 utils.py debian/zorin-share/usr/share/zorin-share/
+	install -m 644 shared_elements.py debian/zorin-share/usr/share/zorin-share/
+	install -m 644 i18n.py debian/zorin-share/usr/share/zorin-share/
+	
+	# Install translations
+	install -d debian/zorin-share/usr/share/zorin-share/locale/en/LC_MESSAGES
+	install -d debian/zorin-share/usr/share/zorin-share/locale/it/LC_MESSAGES
+	install -m 644 locale/en/LC_MESSAGES/zorin-share.mo debian/zorin-share/usr/share/zorin-share/locale/en/LC_MESSAGES/
+	install -m 644 locale/it/LC_MESSAGES/zorin-share.mo debian/zorin-share/usr/share/zorin-share/locale/it/LC_MESSAGES/
+	
+	# Install executable launcher
+	install -d debian/zorin-share/usr/bin
+	install -m 755 zorin-share.sh debian/zorin-share/usr/bin/zorin-share
+	
+	# Install desktop entry
+	install -d debian/zorin-share/usr/share/applications
+	install -m 644 zorin-share.desktop debian/zorin-share/usr/share/applications/
+	
+	# Install documentation
+	install -d debian/zorin-share/usr/share/doc/zorin-share
+	install -m 644 README.md debian/zorin-share/usr/share/doc/zorin-share/
