@@ -19,33 +19,33 @@ override_dh_auto_test:
 
 override_dh_auto_install:
 	# Install Python modules
-	install -d debian/zorin-share/usr/share/zorin-share
-	install -m 644 main.py debian/zorin-share/usr/share/zorin-share/
-	install -m 644 dialogs.py debian/zorin-share/usr/share/zorin-share/
-	install -m 644 utils.py debian/zorin-share/usr/share/zorin-share/
-	install -m 644 shared_elements.py debian/zorin-share/usr/share/zorin-share/
-	install -m 644 i18n.py debian/zorin-share/usr/share/zorin-share/
+	install -d debian/samba-configurator/usr/share/samba-configurator
+	install -m 644 main.py debian/samba-configurator/usr/share/samba-configurator/
+	install -m 644 dialogs.py debian/samba-configurator/usr/share/samba-configurator/
+	install -m 644 utils.py debian/samba-configurator/usr/share/samba-configurator/
+	install -m 644 shared_elements.py debian/samba-configurator/usr/share/samba-configurator/
+	install -m 644 i18n.py debian/samba-configurator/usr/share/samba-configurator/
 	
 	# Install translations
-	install -d debian/zorin-share/usr/share/zorin-share/locale/en/LC_MESSAGES
-	install -d debian/zorin-share/usr/share/zorin-share/locale/it/LC_MESSAGES
-	install -d debian/zorin-share/usr/share/zorin-share/locale/es/LC_MESSAGES
-	install -d debian/zorin-share/usr/share/zorin-share/locale/fr/LC_MESSAGES
-	install -d debian/zorin-share/usr/share/zorin-share/locale/de/LC_MESSAGES
-	install -m 644 locale/en/LC_MESSAGES/zorin-share.mo debian/zorin-share/usr/share/zorin-share/locale/en/LC_MESSAGES/
-	install -m 644 locale/it/LC_MESSAGES/zorin-share.mo debian/zorin-share/usr/share/zorin-share/locale/it/LC_MESSAGES/
-	install -m 644 locale/es/LC_MESSAGES/zorin-share.mo debian/zorin-share/usr/share/zorin-share/locale/es/LC_MESSAGES/
-	install -m 644 locale/fr/LC_MESSAGES/zorin-share.mo debian/zorin-share/usr/share/zorin-share/locale/fr/LC_MESSAGES/
-	install -m 644 locale/de/LC_MESSAGES/zorin-share.mo debian/zorin-share/usr/share/zorin-share/locale/de/LC_MESSAGES/
+	install -d debian/samba-configurator/usr/share/samba-configurator/locale/en/LC_MESSAGES
+	install -d debian/samba-configurator/usr/share/samba-configurator/locale/it/LC_MESSAGES
+	install -d debian/samba-configurator/usr/share/samba-configurator/locale/es/LC_MESSAGES
+	install -d debian/samba-configurator/usr/share/samba-configurator/locale/fr/LC_MESSAGES
+	install -d debian/samba-configurator/usr/share/samba-configurator/locale/de/LC_MESSAGES
+	install -m 644 locale/en/LC_MESSAGES/samba-configurator.mo debian/samba-configurator/usr/share/samba-configurator/locale/en/LC_MESSAGES/
+	install -m 644 locale/it/LC_MESSAGES/samba-configurator.mo debian/samba-configurator/usr/share/samba-configurator/locale/it/LC_MESSAGES/
+	install -m 644 locale/es/LC_MESSAGES/samba-configurator.mo debian/samba-configurator/usr/share/samba-configurator/locale/es/LC_MESSAGES/
+	install -m 644 locale/fr/LC_MESSAGES/samba-configurator.mo debian/samba-configurator/usr/share/samba-configurator/locale/fr/LC_MESSAGES/
+	install -m 644 locale/de/LC_MESSAGES/samba-configurator.mo debian/samba-configurator/usr/share/samba-configurator/locale/de/LC_MESSAGES/
 	
 	# Install executable launcher
-	install -d debian/zorin-share/usr/bin
-	install -m 755 zorin-share.sh debian/zorin-share/usr/bin/zorin-share
+	install -d debian/samba-configurator/usr/bin
+	install -m 755 zorin-share.sh debian/samba-configurator/usr/bin/zorin-share
 	
 	# Install desktop entry
-	install -d debian/zorin-share/usr/share/applications
-	install -m 644 zorin-share.desktop debian/zorin-share/usr/share/applications/
+	install -d debian/samba-configurator/usr/share/applications
+	install -m 644 zorin-share.desktop debian/samba-configurator/usr/share/applications/
 	
 	# Install documentation
-	install -d debian/zorin-share/usr/share/doc/zorin-share
-	install -m 644 README.md debian/zorin-share/usr/share/doc/zorin-share/
+	install -d debian/samba-configurator/usr/share/doc/samba-configurator
+	install -m 644 README.md debian/samba-configurator/usr/share/doc/samba-configurator/

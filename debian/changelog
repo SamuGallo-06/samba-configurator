@@ -1,4 +1,4 @@
-zorin-share (1.0.0-1) unstable; urgency=medium
+samba-configurator (1.0.0-1) unstable; urgency=medium
 
   * Initial release
   * GTK4-based graphical interface for Samba share management
