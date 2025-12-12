@@ -8,9 +8,12 @@ from dialogs import AddFolderDialog, EditFolderDialog
 
 from i18n import _ # Import translation function
 
+PROGRAM_NAME = "Zorin Share"
+APPLICATION_ID = "com.samugallo.zorin-share"
+
 class ZorinShare(Gtk.Application):
     def __init__(self):
-        super().__init__(application_id="com.samugallo06.zorinshare", flags=gi.repository.Gio.ApplicationFlags.FLAGS_NONE)
+        super().__init__(application_id=APPLICATION_ID, flags=gi.repository.Gio.ApplicationFlags.FLAGS_NONE)
         self.sharedFolders = []
         self.connect("activate", self.OnActivate)
     
@@ -237,7 +240,7 @@ class ZorinShare(Gtk.Application):
         aboutDialog.set_modal(True)
         
         # Application info
-        aboutDialog.set_program_name("Zorin Share")
+        aboutDialog.set_program_name(PROGRAM_NAME)
         aboutDialog.set_version("1.0.0")
         aboutDialog.set_comments("A modern GTK4 application for managing Samba shared folders")
         aboutDialog.set_website("https://github.com/SamuGallo-06/zorin-share")
