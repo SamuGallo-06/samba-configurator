@@ -1,4 +1,4 @@
-# Zorin Share
+# Samba Configurator
 
 [![Made with Python](https://img.shields.io/badge/Made%20with-Python-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![GTK](https://img.shields.io/badge/GTK-4.0-7FE719?logo=gtk&logoColor=white)](https://www.gtk.org/)
@@ -47,7 +47,7 @@ Run the application and use the GUI to add, edit, or remove Samba shares without
 ## Project Structure
 
 ```
-zorin-share/
+samba-configurator/
 ├── main.py              # Main application entry point
 ├── dialogs.py           # Dialog windows (Add/Edit folder)
 ├── shared_elements.py     # SharedFolder data class
