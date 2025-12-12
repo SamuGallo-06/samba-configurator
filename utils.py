@@ -1,8 +1,76 @@
 from shared_elements import SharedFolder
 import os
+import subprocess
+import shutil
 from i18n import _
 
-SMB_CONF_PATH = "./smb.conf"
+SMB_CONF_PATH = "/etc/samba/smb.conf"
+
+def CheckSambaStatus() -> dict:
+    """
+    Check if Samba is installed and running.
+    Returns a dict with 'installed', 'running', and 'message' keys.
+    """
+    result = {
+        'installed': False,
+        'running': False,
+        'message': ''
+    }
+    
+    # Check if smbd is installed
+    if shutil.which('smbd') is None:
+        result['message'] = _('Samba is not installed')
+        return result
+    
+    result['installed'] = True
+    
+    # Check if smbd service is running
+    try:
+        status = subprocess.run(
+            ['systemctl', 'is-active', 'smbd'],
+            capture_output=True,
+            text=True,
+            timeout=5
+        )
+        if status.returncode == 0 and status.stdout.strip() == 'active':
+            result['running'] = True
+            result['message'] = _('Samba is running')
+        else:
+            result['message'] = _('Samba is installed but not running')
+    except (subprocess.TimeoutExpired, FileNotFoundError):
+        result['message'] = _('Cannot check Samba status')
+    
+    return result
+
+def StartSambaService() -> bool:
+    """
+    Attempt to start the Samba service using systemctl.
+    Returns True if successful, False otherwise.
+    """
+    try:
+        result = subprocess.run(
+            ['pkexec', 'systemctl', 'start', 'smbd'],
+            capture_output=True,
+            timeout=30
+        )
+        return result.returncode == 0
+    except (subprocess.TimeoutExpired, FileNotFoundError):
+        return False
+    
+def StopSambaService() -> bool:
+    """
+    Attempt to stop the Samba service using systemctl.
+    Returns True if successful, False otherwise.
+    """
+    try:
+        result = subprocess.run(
+            ['pkexec', 'systemctl', 'stop', 'smbd'],
+            capture_output=True,
+            timeout=30
+        )
+        return result.returncode == 0
+    except (subprocess.TimeoutExpired, FileNotFoundError):
+        return False
 
 def CraftSmbEntry(folder: SharedFolder) -> str:
         entry = f"""## Created By Zorin Share ##

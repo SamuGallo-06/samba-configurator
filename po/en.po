@@ -1,14 +1,14 @@
-# English translations for Zorin Share package.
+# Zorin Share
 # Copyright (C) 2025 Samuele Gallicani
-# This file is distributed under the same license as the Zorin Share package.
+# This file is distributed under the same license as the zorin-share package.
 # Samuele Gallicani <samu.gallicani@gmail.com>, 2025.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Zorin Share 1.0.0\n"
+"Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: samu.gallicani@gmail.com\n"
-"POT-Creation-Date: 2025-12-11 16:58+0100\n"
-"PO-Revision-Date: 2025-12-11 16:45+0100\n"
+"POT-Creation-Date: 2025-12-11 18:18+0100\n"
+"PO-Revision-Date: 2025-12-11 17:54+0100\n"
 "Last-Translator: Samuele Gallicani <samu.gallicani@gmail.com>\n"
 "Language-Team: English\n"
 "Language: en\n"
@@ -61,11 +61,12 @@ msgstr "Add"
 msgid "Remove"
 msgstr "Remove"
 
-#: dialogs.py:158 dialogs.py:417 dialogs.py:524
+#: dialogs.py:158 dialogs.py:417 dialogs.py:524 main.py:223
 msgid "Cancel"
 msgstr "Cancel"
 
-#: dialogs.py:163 dialogs.py:517 dialogs.py:524
+#: dialogs.py:163 dialogs.py:517 dialogs.py:524 main.py:245 main.py:263
+#: main.py:271
 msgid "OK"
 msgstr "OK"
 
@@ -90,7 +91,7 @@ msgstr ""
 "[ERROR] Cannot create shared folder: Missing required fields: {name} {path} "
 "{comment}"
 
-#: dialogs.py:229 dialogs.py:234 dialogs.py:488 dialogs.py:493
+#: dialogs.py:229 dialogs.py:234 dialogs.py:488 dialogs.py:493 main.py:234
 msgid "Error"
 msgstr "Error"
 
@@ -112,7 +113,7 @@ msgstr "Path does not exist: {path}"
 msgid "Dialog cancelled"
 msgstr "Dialog cancelled"
 
-#: dialogs.py:256 main.py:119
+#: dialogs.py:256 main.py:131
 msgid "Edit Shared Folder"
 msgstr "Edit Shared Folder"
 
@@ -157,94 +158,166 @@ msgstr "[ERROR] Cannot edit shared folder: Path does not exist: {}"
 msgid "Path does not exist: {}"
 msgstr "Path does not exist: {}"
 
-#: main.py:33
+#: main.py:23
+msgid "Samba Not Installed"
+msgstr "Samba Not Installed"
+
+#: main.py:24
+msgid ""
+"Samba is not installed on your system. This application requires Samba to "
+"function.\n"
+"\n"
+"Please install Samba using:\n"
+"sudo apt install samba"
+msgstr ""
+"Samba is not installed on your system. This application requires Samba to "
+"function.\n"
+"\n"
+"Please install Samba using:\n"
+"sudo apt install samba"
+
+#: main.py:45
 msgid "Refresh List"
 msgstr "Refresh List"
 
-#: main.py:34
+#: main.py:46
 msgid "About"
 msgstr "About"
 
-#: main.py:35
+#: main.py:47 main.py:245
 msgid "Quit"
 msgstr "Quit"
 
-#: main.py:70
+#: main.py:82
 msgid "New Shared Folder"
 msgstr "New Shared Folder"
 
-#: main.py:95
+#: main.py:107
 msgid "Unnamed Folder"
 msgstr "Unnamed Folder"
 
-#: main.py:96
+#: main.py:108
 msgid "Read-Only"
 msgstr "Read-Only"
 
-#: main.py:96
+#: main.py:108
 msgid "Writable"
 msgstr "Writable"
 
-#: main.py:97
+#: main.py:109
 msgid "Guests allowed"
 msgstr "Guests allowed"
 
-#: main.py:97
+#: main.py:109
 msgid "Guests not allowed"
 msgstr "Guests not allowed"
 
-#: main.py:99
+#: main.py:111
 msgid "Path"
 msgstr "Path"
 
-#: main.py:127
+#: main.py:139
 msgid "Delete Shared Folder"
 msgstr "Delete Shared Folder"
 
-#: main.py:137
+#: main.py:149
 msgid "Add Shared Folder Dialog opened"
 msgstr "Add Shared Folder Dialog opened"
 
-#: main.py:143
+#: main.py:155
 msgid "Add Shared Folder Dialog closed"
 msgstr "Add Shared Folder Dialog closed"
 
-#: main.py:145
+#: main.py:157
 msgid "New folder to add: "
 msgstr "New folder to add: "
 
-#: main.py:152
+#: main.py:164
 msgid "Edit Shared Folder Dialog opened"
 msgstr "Edit Shared Folder Dialog opened"
 
-#: main.py:158
+#: main.py:170
 msgid "Edit Shared Folder Dialog closed"
 msgstr "Edit Shared Folder Dialog closed"
 
-#: main.py:160
+#: main.py:172
 msgid "Folder edited: "
 msgstr "Folder edited: "
 
-#: main.py:171
+#: main.py:183
 msgid "Are you sure you want to delete the shared folder "
 msgstr "Are you sure you want to delete the shared folder "
 
-#: main.py:173
+#: main.py:185
 msgid "This action cannot be undone."
 msgstr "This action cannot be undone."
+
+#: main.py:221
+msgid "Samba Service Not Running"
+msgstr "Samba Service Not Running"
+
+#: main.py:222
+msgid ""
+"The Samba service is installed but not currently running.\n"
+"\n"
+"Would you like to start it now?"
+msgstr ""
+"The Samba service is installed but not currently running.\n"
+"\n"
+"Would you like to start it now?"
+
+#: main.py:223
+msgid "Start Samba"
+msgstr "Start Samba"
+
+#: main.py:232
+msgid "Success"
+msgstr "Success"
+
+#: main.py:232
+msgid "Samba service started successfully"
+msgstr "Samba service started successfully"
+
+#: main.py:234
+msgid ""
+"Failed to start Samba service.\n"
+"\n"
+"Please start it manually:\n"
+"sudo systemctl start smbd"
+msgstr ""
+"Failed to start Samba service.\n"
+"\n"
+"Please start it manually:\n"
+"sudo systemctl start smbd"
 
 #: shared_elements.py:7
 msgid "Shared Folder"
 msgstr "Shared Folder"
 
-#: utils.py:31 utils.py:110
+#: utils.py:22
+msgid "Samba is not installed"
+msgstr "Samba is not installed"
+
+#: utils.py:37
+msgid "Samba is running"
+msgstr "Samba is running"
+
+#: utils.py:39
+msgid "Samba is installed but not running"
+msgstr "Samba is installed but not running"
+
+#: utils.py:41
+msgid "Cannot check Samba status"
+msgstr "Cannot check Samba status"
+
+#: utils.py:84 utils.py:163
 msgid "[ERROR] Config file not found: {}"
 msgstr "[ERROR] Config file not found: {}"
 
-#: utils.py:34 utils.py:113
+#: utils.py:87 utils.py:166
 msgid "[ERROR] Permission denied reading: {}"
 msgstr "[ERROR] Permission denied reading: {}"
 
-#: utils.py:133 utils.py:145
+#: utils.py:186 utils.py:198
 msgid "[ERROR] Permission denied writing to: {}"
 msgstr "[ERROR] Permission denied writing to: {}"

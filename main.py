@@ -3,7 +3,7 @@ import utils
 import os
 import gi
 gi.require_version('Gtk', '4.0')
-from gi.repository import Gtk, Gio
+from gi.repository import Gtk, Gio, GObject
 from dialogs import AddFolderDialog, EditFolderDialog
 
 from i18n import _ # Import translation function
@@ -16,6 +16,18 @@ class ZorinShare(Gtk.Application):
     
     def OnActivate(self, app):
         """Create and show the main application window."""
+        # Check Samba status before showing the window
+        sambaStatus = utils.CheckSambaStatus()
+        
+        if not sambaStatus['installed']:
+            self.ShowSambaErrorDialog(_('Samba Not Installed'), 
+                                     _('Samba is not installed on your system. This application requires Samba to function.\n\nPlease install Samba using:\nsudo apt install samba'),
+                                     critical=True)
+            return
+        
+        if not sambaStatus['running']:
+            self.ShowSambaWarningDialog()
+        
         window = Gtk.ApplicationWindow(application=app, title="Zorin Share")
         window.set_default_size(600, 400)
 
@@ -27,6 +39,20 @@ class ZorinShare(Gtk.Application):
         self.menuButton = Gtk.MenuButton()
         self.menuButton.set_icon_name("open-menu-symbolic")
         headerBar.pack_end(self.menuButton)
+
+        # Samba Start/Stop Button
+        self.sambaStartStopButton = Gtk.Button()
+        headerBar.pack_start(self.sambaStartStopButton)
+        self.sambaStartStopButton.connect("clicked", self.OnSambaStartStopClicked)
+        self.sambaStartStopButton.set_tooltip_text(_("Start/Stop Samba Service"))
+        self.sambaStartStopButton.set_icon_name("system-shutdown-symbolic")
+
+        #Status Indicator
+        self.sambaStatusIndicator = Gtk.Image()
+        self.sambaStatusIndicator.set_pixel_size(16)
+        headerBar.pack_start(self.sambaStatusIndicator)
+        self.sambaStatusIndicator.set_tooltip_text(_("Samba Service Status"))
+        self.UpdateSambaStatusIndicator()
 
         # Create menu model
         self.menu = Gio.Menu()
@@ -75,6 +101,31 @@ class ZorinShare(Gtk.Application):
 
         window.set_child(mainBox)
         window.present()
+
+    def OnSambaStartStopClicked(self, button):
+        sambaStatus = utils.CheckSambaStatus()
+        if sambaStatus['running']:
+            # Stop Samba
+            if utils.StopSambaService():
+                self.ShowInfoDialog(_("Success"), _("Samba service stopped successfully"))
+            else:
+                self.ShowErrorDialog(_("Error"), _("Failed to stop Samba service.\n\nPlease stop it manually:\nsudo systemctl stop smbd"))
+        else:
+            # Start Samba
+            if utils.StartSambaService():
+                self.ShowInfoDialog(_("Success"), _("Samba service started successfully"))
+            else:
+                self.ShowErrorDialog(_("Error"), _("Failed to start Samba service.\n\nPlease start it manually:\nsudo systemctl start smbd"))
+        self.UpdateSambaStatusIndicator()
+
+    def UpdateSambaStatusIndicator(self):
+        sambaStatus = utils.CheckSambaStatus()
+        if sambaStatus['running']:
+            self.sambaStatusIndicator.set_from_icon_name("network-transmit-receive-symbolic")
+            self.sambaStatusIndicator.set_tooltip_text(_("Samba Service is Running"))
+        else:
+            self.sambaStatusIndicator.set_from_icon_name("network-offline-symbolic")
+            self.sambaStatusIndicator.set_tooltip_text(_("Samba Service is Stopped"))
 
     def UpdateList(self):
         self.sharedFolders = utils.ParseSmbConf()
@@ -202,6 +253,62 @@ class ZorinShare(Gtk.Application):
         aboutDialog.set_logo_icon_name("folder-remote")
         
         aboutDialog.present()
+    
+    def ShowSambaWarningDialog(self):
+        """Show warning dialog when Samba is not running."""
+        dialog = Gtk.AlertDialog()
+        dialog.set_message(_("Samba Service Not Running"))
+        dialog.set_detail(_("The Samba service is installed but not currently running.\n\nWould you like to start it now?"))
+        dialog.set_buttons([_("Cancel"), _("Start Samba")])
+        dialog.set_default_button(1)
+        dialog.set_cancel_button(0)
+        
+        def on_response(dialog, result):
+            try:
+                response = dialog.choose_finish(result)
+                if response == 1:  # Start Samba button
+                    if utils.StartSambaService():
+                        self.ShowInfoDialog(_("Success"), _("Samba service started successfully"))
+                    else:
+                        self.ShowErrorDialog(_("Error"), _("Failed to start Samba service.\n\nPlease start it manually:\nsudo systemctl start smbd"))
+            except Exception as e:
+                pass  # User cancelled
+        
+        dialog.choose(self.get_active_window(), None, on_response)
+    
+    def ShowSambaErrorDialog(self, title: str, message: str, critical: bool = False):
+        """Show error dialog for Samba issues."""
+        dialog = Gtk.AlertDialog()
+        dialog.set_message(title)
+        dialog.set_detail(message)
+        dialog.set_buttons([_("Quit") if critical else _("OK")])
+        
+        def on_response(dialog, result):
+            try:
+                dialog.choose_finish(result)
+                if critical:
+                    self.quit()
+            except Exception:
+                if critical:
+                    self.quit()
+        
+        dialog.choose(None, None, on_response)
+    
+    def ShowInfoDialog(self, title: str, message: str):
+        """Show info dialog."""
+        dialog = Gtk.AlertDialog()
+        dialog.set_message(title)
+        dialog.set_detail(message)
+        dialog.set_buttons([_("OK")])
+        dialog.choose(self.get_active_window(), None, lambda d, r: d.choose_finish(r))
+    
+    def ShowErrorDialog(self, title: str, message: str):
+        """Show error dialog."""
+        dialog = Gtk.AlertDialog()
+        dialog.set_message(title)
+        dialog.set_detail(message)
+        dialog.set_buttons([_("OK")])
+        dialog.choose(self.get_active_window(), None, lambda d, r: d.choose_finish(r))
 
 
 if __name__ == "__main__":
