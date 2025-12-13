@@ -35,10 +35,10 @@ sudo ./install.sh
 ### Install using .deb package
 
 - Download the latest .deb release package from the release section
-- Open a terminal in your downloads folder and run:
+- Open a terminal in your downloads folder and run the following command, replacing `x.y.z` with the correct version
 
 ```bash
-sudo apt install ./samba-configurator_1.0.3_all.deb
+sudo apt install ./samba-configurator_x.y.z_all.deb
 ```
 
 
