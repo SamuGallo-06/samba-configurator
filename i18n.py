@@ -4,7 +4,7 @@ import os
 
 # Determine the directory of the translations
 LOCALE_DIR = os.path.join(os.path.dirname(__file__), 'locale')
-DOMAIN = 'zorin-share'
+DOMAIN = 'samba-configurator'
 
 # Set system locale
 locale.setlocale(locale.LC_ALL, '')

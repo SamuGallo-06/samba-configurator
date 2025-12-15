@@ -10,7 +10,7 @@ from i18n import _ # Import translation function
 
 PROGRAM_NAME = "Samba Configurator"
 APPLICATION_ID = "com.samugallo.samba-configurator"
-VERSION = "1.0.0"
+VERSION = "1.0.5"
 REPOSITORY_URL = "https://www.github.com/SamuGallo-06/samba-configurator"
 
 class ZorinShare(Gtk.Application):
@@ -35,6 +35,7 @@ class ZorinShare(Gtk.Application):
         
         window = Gtk.ApplicationWindow(application=app, title=PROGRAM_NAME)
         window.set_default_size(600, 400)
+        window.set_icon_name("samba-configurator")
 
         headerBar = Gtk.HeaderBar()
         headerBar.set_show_title_buttons(True)
