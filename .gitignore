@@ -45,3 +45,7 @@ Thumbs.db
 
 # Final package
 samba-configurator*.deb
+
+# Unuseful icons
+icon-14x14.png
+icon-64x64.png
