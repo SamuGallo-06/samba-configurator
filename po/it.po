@@ -1,14 +1,14 @@
-# Samba Configurator
-# Copyright (C) 2025 Samuele Gallicani
-# This file is distributed under the same license as the samba-configurator package.
+# Italian translations for Samba Configurator package.
+# Copyright (C) 2025 2025 Samuele Gallicani
+# This file is distributed under the same license as the Samba Configurator package.
 # Samuele Gallicani <samu.gallicani@gmail.com>, 2025.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.0\n"
+"Project-Id-Version: Samba Configurator 1.0.4\n"
 "Report-Msgid-Bugs-To: samu.gallicani@gmail.com\n"
-"POT-Creation-Date: 2025-12-13 12:50+0100\n"
-"PO-Revision-Date: 2025-12-11 17:55+0100\n"
+"POT-Creation-Date: 2025-12-15 13:45+0100\n"
+"PO-Revision-Date: 2025-12-15 13:47+0100\n"
 "Last-Translator: Samuele Gallicani <samu.gallicani@gmail.com>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "Language: it\n"
@@ -23,11 +23,11 @@ msgstr "Aggiungi Cartella Condivisa"
 
 #: dialogs.py:45
 msgid "Browse"
-msgstr ""
+msgstr "Sfoglia"
 
 #: dialogs.py:46
 msgid "Browse for folder"
-msgstr ""
+msgstr "Cerca cartella"
 
 #: dialogs.py:62 dialogs.py:324
 msgid "Read Only"
@@ -79,13 +79,12 @@ msgid "OK"
 msgstr "OK"
 
 #: dialogs.py:176
-#, fuzzy
 msgid "Select Folder"
-msgstr "Cartella Condivisa"
+msgstr "Seleziona Cartella"
 
 #: dialogs.py:189 dialogs.py:472
 msgid "Cancel clicked"
-msgstr "Annulla cliccato"
+msgstr "Annullamento cliccato"
 
 #: dialogs.py:220
 msgid "OK clicked"
@@ -93,7 +92,7 @@ msgstr "OK cliccato"
 
 #: dialogs.py:240
 msgid "Creating SharedFolder from dialog inputs"
-msgstr "Creazione CartellCondivisa dagli input della finestra"
+msgstr "Creazione Cartella Condivisa dagli input del dialogo"
 
 #: dialogs.py:248
 #, python-brace-format
@@ -101,8 +100,8 @@ msgid ""
 "[ERROR] Cannot create shared folder: Missing required fields: {name} {path} "
 "{comment}"
 msgstr ""
-"[ERRORE] Impossibile creare cartella condivisa: Campi obbligatori mancanti: "
-"{name} {path} {comment}"
+"[ERRORE] Impossibile creare cartella condivisa: Campi richiesti mancanti: {name} {path} "
+"{comment}"
 
 #: dialogs.py:249 dialogs.py:254 dialogs.py:508 dialogs.py:513 main.py:117
 #: main.py:123 main.py:278
@@ -111,14 +110,12 @@ msgstr "Errore"
 
 #: dialogs.py:249 dialogs.py:508
 msgid "Missing required fields: Name, Path, and Comment are required."
-msgstr "Campi obbligatori mancanti: Nome, Percorso e Commento sono richiesti."
+msgstr "Campi richiesti mancanti: Nome, Percorso e Commento sono obbligatori."
 
 #: dialogs.py:253
 #, python-brace-format
 msgid "[ERROR] Cannot create shared folder: Path does not exist: {path}"
-msgstr ""
-"[ERRORE] Impossibile creare cartella condivisa: Il percorso non esiste: "
-"{path}"
+msgstr "[ERRORE] Impossibile creare cartella condivisa: Il percorso non esiste: {path}"
 
 #: dialogs.py:254
 #, python-brace-format
@@ -127,7 +124,7 @@ msgstr "Il percorso non esiste: {path}"
 
 #: dialogs.py:271 dialogs.py:530
 msgid "Dialog cancelled"
-msgstr "Finestra annullata"
+msgstr "Dialogo annullato"
 
 #: dialogs.py:276 main.py:175
 msgid "Edit Shared Folder"
@@ -151,11 +148,11 @@ msgstr "Salva"
 
 #: dialogs.py:479
 msgid "Save clicked"
-msgstr "Salva cliccato"
+msgstr "Salvataggio cliccato"
 
 #: dialogs.py:499
 msgid "Updating SharedFolder from dialog inputs"
-msgstr "Aggiornamento CartellCondivisa dagli input della finestra"
+msgstr "Aggiornamento CartellaCon divisa dagli input del dialogo"
 
 #: dialogs.py:507
 #, python-brace-format
@@ -163,14 +160,12 @@ msgid ""
 "[ERROR] Cannot edit shared folder: Missing required fields: {name} {path} "
 "{comment}"
 msgstr ""
-"[ERRORE] Impossibile modificare cartella condivisa: Campi obbligatori "
-"mancanti: {name} {path} {comment}"
+"[ERRORE] Impossibile modificare cartella condivisa: Campi richiesti mancanti: {name} {path} "
+"{comment}"
 
 #: dialogs.py:512
 msgid "[ERROR] Cannot edit shared folder: Path does not exist: {}"
-msgstr ""
-"[ERRORE] Impossibile modificare cartella condivisa: Il percorso non esiste: "
-"{}"
+msgstr "[ERRORE] Impossibile modificare cartella condivisa: Il percorso non esiste: {}"
 
 #: dialogs.py:513
 msgid "Path does not exist: {}"
@@ -188,25 +183,23 @@ msgid ""
 "Please install Samba using:\n"
 "sudo apt install samba"
 msgstr ""
-"Samba non è installato sul tuo sistema. Questa applicazione richiede Samba "
-"per funzionare.\n"
+"Samba non è installato sul tuo sistema. Questa applicazione richiede Samba per "
+"funzionare.\n"
 "\n"
 "Installa Samba usando:\n"
 "sudo apt install samba"
 
 #: main.py:52
-#, fuzzy
 msgid "Start/Stop Samba Service"
-msgstr "Avvia Samba"
+msgstr "Avvia/Ferma Servizio Samba"
 
 #: main.py:59
-#, fuzzy
 msgid "Samba Service Status"
-msgstr "Servizio Samba Non Attivo"
+msgstr "Stato Servizio Samba"
 
 #: main.py:64
 msgid "Refresh List"
-msgstr "Aggiorna Lista"
+msgstr "Aggiorna Elenco"
 
 #: main.py:65
 msgid "About"
@@ -225,22 +218,20 @@ msgid "Success"
 msgstr "Successo"
 
 #: main.py:115
-#, fuzzy
 msgid "Samba service stopped successfully"
-msgstr "Servizio Samba avviato con successo"
+msgstr "Servizio Samba fermato con successo"
 
 #: main.py:117
-#, fuzzy
 msgid ""
 "Failed to stop Samba service.\n"
 "\n"
 "Please stop it manually:\n"
 "sudo systemctl stop smbd"
 msgstr ""
-"Impossibile avviare il servizio Samba.\n"
+"Impossibile fermare il servizio Samba.\n"
 "\n"
-"Avvialo manualmente con:\n"
-"sudo systemctl start smbd"
+"Fermalo manualmente:\n"
+"sudo systemctl stop smbd"
 
 #: main.py:121 main.py:276
 msgid "Samba service started successfully"
@@ -255,18 +246,16 @@ msgid ""
 msgstr ""
 "Impossibile avviare il servizio Samba.\n"
 "\n"
-"Avvialo manualmente con:\n"
+"Avvialo manualmente:\n"
 "sudo systemctl start smbd"
 
 #: main.py:130
-#, fuzzy
 msgid "Samba Service is Running"
-msgstr "Servizio Samba Non Attivo"
+msgstr "Il Servizio Samba è in Esecuzione"
 
 #: main.py:133
-#, fuzzy
 msgid "Samba Service is Stopped"
-msgstr "Servizio Samba Non Attivo"
+msgstr "Il Servizio Samba è Fermato"
 
 #: main.py:151
 msgid "Unnamed Folder"
@@ -298,11 +287,11 @@ msgstr "Elimina Cartella Condivisa"
 
 #: main.py:193
 msgid "Add Shared Folder Dialog opened"
-msgstr "Finestra Aggiungi Cartella Condivisa aperta"
+msgstr "Dialogo Aggiungi Cartella Condivisa aperto"
 
 #: main.py:199
 msgid "Add Shared Folder Dialog closed"
-msgstr "Finestra Aggiungi Cartella Condivisa chiusa"
+msgstr "Dialogo Aggiungi Cartella Condivisa chiuso"
 
 #: main.py:201
 msgid "New folder to add: "
@@ -310,11 +299,11 @@ msgstr "Nuova cartella da aggiungere: "
 
 #: main.py:208
 msgid "Edit Shared Folder Dialog opened"
-msgstr "Finestra Modifica Cartella Condivisa aperta"
+msgstr "Dialogo Modifica Cartella Condivisa aperto"
 
 #: main.py:214
 msgid "Edit Shared Folder Dialog closed"
-msgstr "Finestra Modifica Cartella Condivisa chiusa"
+msgstr "Dialogo Modifica Cartella Condivisa chiuso"
 
 #: main.py:216
 msgid "Folder edited: "
@@ -330,7 +319,7 @@ msgstr "Questa azione non può essere annullata."
 
 #: main.py:265
 msgid "Samba Service Not Running"
-msgstr "Servizio Samba Non Attivo"
+msgstr "Servizio Samba Non in Esecuzione"
 
 #: main.py:266
 msgid ""

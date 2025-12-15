@@ -24,10 +24,6 @@ debian/*.log
 *.tar.gz
 *.tar.xz
 
-# Translations (compiled)
-*.mo
-locale/*/LC_MESSAGES/*.mo
-
 # Testing
 smb.conf
 package/

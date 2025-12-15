@@ -1,14 +1,14 @@
-# Samba Configurator
-# Copyright (C) 2025 Samuele Gallicani
-# This file is distributed under the same license as the samba-configurator package.
+# English translations for Samba Configurator package.
+# Copyright (C) 2025 2025 Samuele Gallicani
+# This file is distributed under the same license as the Samba Configurator package.
 # Samuele Gallicani <samu.gallicani@gmail.com>, 2025.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.0\n"
+"Project-Id-Version: Samba Configurator 1.0.4\n"
 "Report-Msgid-Bugs-To: samu.gallicani@gmail.com\n"
-"POT-Creation-Date: 2025-12-13 12:50+0100\n"
-"PO-Revision-Date: 2025-12-11 17:54+0100\n"
+"POT-Creation-Date: 2025-12-15 13:45+0100\n"
+"PO-Revision-Date: 2025-12-15 13:48+0100\n"
 "Last-Translator: Samuele Gallicani <samu.gallicani@gmail.com>\n"
 "Language-Team: English\n"
 "Language: en\n"
@@ -23,11 +23,11 @@ msgstr "Add Shared Folder"
 
 #: dialogs.py:45
 msgid "Browse"
-msgstr ""
+msgstr "Browse"
 
 #: dialogs.py:46
 msgid "Browse for folder"
-msgstr ""
+msgstr "Browse for folder"
 
 #: dialogs.py:62 dialogs.py:324
 msgid "Read Only"
@@ -79,9 +79,8 @@ msgid "OK"
 msgstr "OK"
 
 #: dialogs.py:176
-#, fuzzy
 msgid "Select Folder"
-msgstr "Shared Folder"
+msgstr "Select Folder"
 
 #: dialogs.py:189 dialogs.py:472
 msgid "Cancel clicked"
@@ -191,14 +190,12 @@ msgstr ""
 "sudo apt install samba"
 
 #: main.py:52
-#, fuzzy
 msgid "Start/Stop Samba Service"
-msgstr "Start Samba"
+msgstr "Start/Stop Samba Service"
 
 #: main.py:59
-#, fuzzy
 msgid "Samba Service Status"
-msgstr "Samba Service Not Running"
+msgstr "Samba Service Status"
 
 #: main.py:64
 msgid "Refresh List"
@@ -221,22 +218,20 @@ msgid "Success"
 msgstr "Success"
 
 #: main.py:115
-#, fuzzy
 msgid "Samba service stopped successfully"
-msgstr "Samba service started successfully"
+msgstr "Samba service stopped successfully"
 
 #: main.py:117
-#, fuzzy
 msgid ""
 "Failed to stop Samba service.\n"
 "\n"
 "Please stop it manually:\n"
 "sudo systemctl stop smbd"
 msgstr ""
-"Failed to start Samba service.\n"
+"Failed to stop Samba service.\n"
 "\n"
-"Please start it manually:\n"
-"sudo systemctl start smbd"
+"Please stop it manually:\n"
+"sudo systemctl stop smbd"
 
 #: main.py:121 main.py:276
 msgid "Samba service started successfully"
@@ -255,14 +250,12 @@ msgstr ""
 "sudo systemctl start smbd"
 
 #: main.py:130
-#, fuzzy
 msgid "Samba Service is Running"
-msgstr "Samba Service Not Running"
+msgstr "Samba Service is Running"
 
 #: main.py:133
-#, fuzzy
 msgid "Samba Service is Stopped"
-msgstr "Samba Service Not Running"
+msgstr "Samba Service is Stopped"
 
 #: main.py:151
 msgid "Unnamed Folder"

@@ -1,14 +1,14 @@
-# Samba Configurator
-# Copyright (C) 2025 Samuele Gallicani
-# This file is distributed under the same license as the samba-configurator package.
+# German translations for Samba Configurator package.
+# Copyright (C) 2025 2025 Samuele Gallicani
+# This file is distributed under the same license as the Samba Configurator package.
 # Samuele Gallicani <samu.gallicani@gmail.com>, 2025.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.0\n"
+"Project-Id-Version: Samba Configurator 1.0.4\n"
 "Report-Msgid-Bugs-To: samu.gallicani@gmail.com\n"
-"POT-Creation-Date: 2025-12-13 12:50+0100\n"
-"PO-Revision-Date: 2025-12-11 17:56+0100\n"
+"POT-Creation-Date: 2025-12-15 13:45+0100\n"
+"PO-Revision-Date: 2025-12-15 13:48+0100\n"
 "Last-Translator: Samuele Gallicani <samu.gallicani@gmail.com>\n"
 "Language-Team: German <translation-team-de@lists.sourceforge.net>\n"
 "Language: de\n"
@@ -23,11 +23,11 @@ msgstr "Freigegebenen Ordner hinzufügen"
 
 #: dialogs.py:45
 msgid "Browse"
-msgstr ""
+msgstr "Durchsuchen"
 
 #: dialogs.py:46
 msgid "Browse for folder"
-msgstr ""
+msgstr "Nach Ordner suchen"
 
 #: dialogs.py:62 dialogs.py:324
 msgid "Read Only"
@@ -79,9 +79,8 @@ msgid "OK"
 msgstr "OK"
 
 #: dialogs.py:176
-#, fuzzy
 msgid "Select Folder"
-msgstr "Freigegebener Ordner"
+msgstr "Ordner auswählen"
 
 #: dialogs.py:189 dialogs.py:472
 msgid "Cancel clicked"
@@ -93,7 +92,7 @@ msgstr "OK geklickt"
 
 #: dialogs.py:240
 msgid "Creating SharedFolder from dialog inputs"
-msgstr "Erstelle freigegebenen Ordner aus Dialogeingaben"
+msgstr "Freigegebener Ordner wird aus Dialogeingaben erstellt"
 
 #: dialogs.py:248
 #, python-brace-format
@@ -101,8 +100,8 @@ msgid ""
 "[ERROR] Cannot create shared folder: Missing required fields: {name} {path} "
 "{comment}"
 msgstr ""
-"[FEHLER] Kann freigegebenen Ordner nicht erstellen: Fehlende Pflichtfelder: "
-"{name} {path} {comment}"
+"[FEHLER] Freigegebener Ordner kann nicht erstellt werden: Erforderliche Felder fehlen: {name} {path} "
+"{comment}"
 
 #: dialogs.py:249 dialogs.py:254 dialogs.py:508 dialogs.py:513 main.py:117
 #: main.py:123 main.py:278
@@ -111,14 +110,12 @@ msgstr "Fehler"
 
 #: dialogs.py:249 dialogs.py:508
 msgid "Missing required fields: Name, Path, and Comment are required."
-msgstr "Fehlende Pflichtfelder: Name, Pfad und Kommentar sind erforderlich."
+msgstr "Erforderliche Felder fehlen: Name, Pfad und Kommentar sind erforderlich."
 
 #: dialogs.py:253
 #, python-brace-format
 msgid "[ERROR] Cannot create shared folder: Path does not exist: {path}"
-msgstr ""
-"[FEHLER] Kann freigegebenen Ordner nicht erstellen: Pfad existiert nicht: "
-"{path}"
+msgstr "[FEHLER] Freigegebener Ordner kann nicht erstellt werden: Pfad existiert nicht: {path}"
 
 #: dialogs.py:254
 #, python-brace-format
@@ -155,7 +152,7 @@ msgstr "Speichern geklickt"
 
 #: dialogs.py:499
 msgid "Updating SharedFolder from dialog inputs"
-msgstr "Aktualisiere freigegebenen Ordner aus Dialogeingaben"
+msgstr "Freigegebener Ordner wird aus Dialogeingaben aktualisiert"
 
 #: dialogs.py:507
 #, python-brace-format
@@ -163,13 +160,12 @@ msgid ""
 "[ERROR] Cannot edit shared folder: Missing required fields: {name} {path} "
 "{comment}"
 msgstr ""
-"[FEHLER] Kann freigegebenen Ordner nicht bearbeiten: Fehlende Pflichtfelder: "
-"{name} {path} {comment}"
+"[FEHLER] Freigegebener Ordner kann nicht bearbeitet werden: Erforderliche Felder fehlen: {name} {path} "
+"{comment}"
 
 #: dialogs.py:512
 msgid "[ERROR] Cannot edit shared folder: Path does not exist: {}"
-msgstr ""
-"[FEHLER] Kann freigegebenen Ordner nicht bearbeiten: Pfad existiert nicht: {}"
+msgstr "[FEHLER] Freigegebener Ordner kann nicht bearbeitet werden: Pfad existiert nicht: {}"
 
 #: dialogs.py:513
 msgid "Path does not exist: {}"
@@ -187,21 +183,19 @@ msgid ""
 "Please install Samba using:\n"
 "sudo apt install samba"
 msgstr ""
-"Samba ist auf Ihrem System nicht installiert. Diese Anwendung benötigt Samba "
-"zum Funktionieren.\n"
+"Samba ist nicht auf Ihrem System installiert. Diese Anwendung benötigt Samba zum "
+"Funktionieren.\n"
 "\n"
 "Bitte installieren Sie Samba mit:\n"
 "sudo apt install samba"
 
 #: main.py:52
-#, fuzzy
 msgid "Start/Stop Samba Service"
-msgstr "Samba starten"
+msgstr "Samba-Dienst starten/stoppen"
 
 #: main.py:59
-#, fuzzy
 msgid "Samba Service Status"
-msgstr "Samba-Dienst läuft nicht"
+msgstr "Samba-Dienststatus"
 
 #: main.py:64
 msgid "Refresh List"
@@ -209,7 +203,7 @@ msgstr "Liste aktualisieren"
 
 #: main.py:65
 msgid "About"
-msgstr "Info"
+msgstr "Über"
 
 #: main.py:66 main.py:289
 msgid "Quit"
@@ -224,22 +218,20 @@ msgid "Success"
 msgstr "Erfolg"
 
 #: main.py:115
-#, fuzzy
 msgid "Samba service stopped successfully"
-msgstr "Samba-Dienst erfolgreich gestartet"
+msgstr "Samba-Dienst erfolgreich gestoppt"
 
 #: main.py:117
-#, fuzzy
 msgid ""
 "Failed to stop Samba service.\n"
 "\n"
 "Please stop it manually:\n"
 "sudo systemctl stop smbd"
 msgstr ""
-"Fehler beim Starten des Samba-Dienstes.\n"
+"Samba-Dienst konnte nicht gestoppt werden.\n"
 "\n"
-"Bitte starten Sie ihn manuell:\n"
-"sudo systemctl start smbd"
+"Bitte stoppen Sie ihn manuell:\n"
+"sudo systemctl stop smbd"
 
 #: main.py:121 main.py:276
 msgid "Samba service started successfully"
@@ -252,20 +244,18 @@ msgid ""
 "Please start it manually:\n"
 "sudo systemctl start smbd"
 msgstr ""
-"Fehler beim Starten des Samba-Dienstes.\n"
+"Samba-Dienst konnte nicht gestartet werden.\n"
 "\n"
 "Bitte starten Sie ihn manuell:\n"
 "sudo systemctl start smbd"
 
 #: main.py:130
-#, fuzzy
 msgid "Samba Service is Running"
-msgstr "Samba-Dienst läuft nicht"
+msgstr "Samba-Dienst läuft"
 
 #: main.py:133
-#, fuzzy
 msgid "Samba Service is Stopped"
-msgstr "Samba-Dienst läuft nicht"
+msgstr "Samba-Dienst ist gestoppt"
 
 #: main.py:151
 msgid "Unnamed Folder"
@@ -297,11 +287,11 @@ msgstr "Freigegebenen Ordner löschen"
 
 #: main.py:193
 msgid "Add Shared Folder Dialog opened"
-msgstr "Dialog 'Freigegebenen Ordner hinzufügen' geöffnet"
+msgstr "Dialog \"Freigegebenen Ordner hinzufügen\" geöffnet"
 
 #: main.py:199
 msgid "Add Shared Folder Dialog closed"
-msgstr "Dialog 'Freigegebenen Ordner hinzufügen' geschlossen"
+msgstr "Dialog \"Freigegebenen Ordner hinzufügen\" geschlossen"
 
 #: main.py:201
 msgid "New folder to add: "
@@ -309,11 +299,11 @@ msgstr "Neuer Ordner zum Hinzufügen: "
 
 #: main.py:208
 msgid "Edit Shared Folder Dialog opened"
-msgstr "Dialog 'Freigegebenen Ordner bearbeiten' geöffnet"
+msgstr "Dialog \"Freigegebenen Ordner bearbeiten\" geöffnet"
 
 #: main.py:214
 msgid "Edit Shared Folder Dialog closed"
-msgstr "Dialog 'Freigegebenen Ordner bearbeiten' geschlossen"
+msgstr "Dialog \"Freigegebenen Ordner bearbeiten\" geschlossen"
 
 #: main.py:216
 msgid "Folder edited: "
@@ -321,7 +311,7 @@ msgstr "Ordner bearbeitet: "
 
 #: main.py:227
 msgid "Are you sure you want to delete the shared folder "
-msgstr "Möchten Sie den freigegebenen Ordner wirklich löschen "
+msgstr "Sind Sie sicher, dass Sie den freigegebenen Ordner löschen möchten "
 
 #: main.py:229
 msgid "This action cannot be undone."
@@ -363,7 +353,7 @@ msgstr "Samba ist installiert, läuft aber nicht"
 
 #: utils.py:43
 msgid "Cannot check Samba status"
-msgstr "Kann Samba-Status nicht prüfen"
+msgstr "Samba-Status kann nicht überprüft werden"
 
 #: utils.py:101 utils.py:180
 msgid "[ERROR] Config file not found: {}"
