@@ -219,22 +219,26 @@ class ZorinShare(Gtk.Application):
         self.UpdateList()
     
     def OnDeleteFolder(self, button, folder:SharedFolder):
-        #Show critical dialog
-        messageDialog = Gtk.MessageDialog(
-            transient_for=self.get_active_window(),
-            modal=True,
-            message_type=Gtk.MessageType.WARNING,
-            buttons=Gtk.ButtonsType.OK_CANCEL,
-            text=_("Are you sure you want to delete the shared folder " + folder.name + "?")
-        )
-        messageDialog.format_secondary_text(_("This action cannot be undone."))
-        response = messageDialog.run()
-        messageDialog.destroy()
-        if response == Gtk.ResponseType.OK:
-            print(f"Deleting folder: {folder.path}")
-            self.sharedFolders.remove(folder)
-            utils.RemoveShareFromSmbConf(folder)
-            self.UpdateList()
+        """Show confirmation dialog before deleting a shared folder."""
+        dialog = Gtk.AlertDialog()
+        dialog.set_message(_("Are you sure you want to delete the shared folder " + folder.name + "?"))
+        dialog.set_detail(_("This action cannot be undone."))
+        dialog.set_buttons([_("Cancel"), _("Delete")])
+        dialog.set_default_button(0)
+        dialog.set_cancel_button(0)
+        
+        def on_response(dialog, result):
+            try:
+                response = dialog.choose_finish(result)
+                if response == 1:  # Delete button
+                    print(f"Deleting folder: {folder.path}")
+                    self.sharedFolders.remove(folder)
+                    utils.RemoveShareFromSmbConf(folder)
+                    self.UpdateList()
+            except Exception:
+                pass  # User cancelled
+        
+        dialog.choose(self.get_active_window(), None, on_response)
     
     def ShowAboutDialog(self):
         """Show the About dialog in GNOME style."""

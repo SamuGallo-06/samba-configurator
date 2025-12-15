@@ -191,8 +191,18 @@ def RemoveShareFromSmbConf(folder: SharedFolder, configPath: str = SMB_CONF_PATH
                 if section.startswith(folder.name + ']'):
                         # Skip this section to remove it
                         continue
-                if section.strip():  # Avoid adding empty sections
-                        newSections.append('[' + section)
+                
+                # Remove the "Created By" comment line if it's the last line before the deleted section
+                if section.strip():
+                        lines = section.split('\n')
+                        # Check if the last line is the "Created By" comment
+                        if lines and lines[-1].strip().startswith('## Created By') and lines[-1].strip().endswith('##'):
+                                # Remove the comment line
+                                lines = lines[:-1]
+                                section = '\n'.join(lines)
+                        
+                        if section.strip():  # Only add if not empty after cleanup
+                                newSections.append('[' + section)
         
         newSmbConf = '\n'.join(newSections)
         
