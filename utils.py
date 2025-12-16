@@ -175,7 +175,7 @@ def ParseSmbConf(configPath: str = SMB_CONF_PATH) -> list:
 def RemoveShareFromSmbConf(folder: SharedFolder, configPath: str = SMB_CONF_PATH) -> bool:
         try:
                 with open(configPath, "r") as f:
-                        smbConf = f.read()
+                        lines = f.readlines()
         except FileNotFoundError:
                 print(_('[ERROR] Config file not found: {}').format(configPath))
                 return False
@@ -183,32 +183,52 @@ def RemoveShareFromSmbConf(folder: SharedFolder, configPath: str = SMB_CONF_PATH
                 print(_('[ERROR] Permission denied reading: {}').format(configPath))
                 return False
         
-        # Split the config into sections
-        sections = smbConf.split('[')
-        newSections = []
+        newLines = []
+        inTargetSection = False
+        skipNextEmptyLines = False
+        sectionMarker = f"[{folder.name}]"
         
-        for section in sections:
-                if section.startswith(folder.name + ']'):
-                        # Skip this section to remove it
+        i = 0
+        while i < len(lines):
+                line = lines[i]
+                strippedLine = line.strip()
+                
+                # Check if we're entering the target section
+                if strippedLine == sectionMarker:
+                        inTargetSection = True
+                        # Check if previous line is the "Created By" comment
+                        if newLines and newLines[-1].strip().startswith('## Created By') and newLines[-1].strip().endswith('##'):
+                                newLines.pop()  # Remove the comment line
+                        # Skip any empty lines before the section
+                        while newLines and not newLines[-1].strip():
+                                newLines.pop()
+                        i += 1
+                        skipNextEmptyLines = True
                         continue
                 
-                # Remove the "Created By" comment line if it's the last line before the deleted section
-                if section.strip():
-                        lines = section.split('\n')
-                        # Check if the last line is the "Created By" comment
-                        if lines and lines[-1].strip().startswith('## Created By') and lines[-1].strip().endswith('##'):
-                                # Remove the comment line
-                                lines = lines[:-1]
-                                section = '\n'.join(lines)
-                        
-                        if section.strip():  # Only add if not empty after cleanup
-                                newSections.append('[' + section)
-        
-        newSmbConf = '\n'.join(newSections)
+                # If we're in the target section
+                if inTargetSection:
+                        # Check if we're starting a new section (end of target section)
+                        if strippedLine.startswith('[') and strippedLine.endswith(']'):
+                                inTargetSection = False
+                                skipNextEmptyLines = False
+                                newLines.append(line)
+                        # Skip all lines in the target section
+                        i += 1
+                        continue
+                
+                # Skip empty lines after removing a section
+                if skipNextEmptyLines and not strippedLine:
+                        i += 1
+                        continue
+                
+                skipNextEmptyLines = False
+                newLines.append(line)
+                i += 1
         
         try:
                 with open(configPath, "w") as f:
-                        f.write(newSmbConf)
+                        f.writelines(newLines)
         except PermissionError:
                 print(_('[ERROR] Permission denied writing to: {}').format(configPath))
                 return False
