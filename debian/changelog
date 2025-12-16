@@ -1,3 +1,11 @@
+samba-configurator (1.0.7) noble jammy focal; urgency=medium
+
+  * Bug Fix: Fixed shared folder removal in utils.py
+  * When a folder was removed, some lines were uncommented, corrupting the smb.conf
+  * Rewrote RemoveShareFromSmbConf to preserve file integrity
+
+ -- Samuele Gallicani <samu.gallicani@gmail.com>  Mon, 16 Dec 2025 12:00:00 +0100
+
 samba-configurator (1.0.6) noble jammy focal; urgency=medium
 
   * Fixed delete confirmation dialog to use GTK4 AlertDialog instead of deprecated MessageDialog

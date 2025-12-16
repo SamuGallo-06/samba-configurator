@@ -2,7 +2,7 @@
 
 # Build the Samba Configurator package
 
-VERSION="1.0.6"
+VERSION="1.0.7"
 
 echo "Starting build process for Samba Configurator version ${VERSION}..."
 debbuild -S -sa

@@ -7,7 +7,7 @@ Standards-Version: 4.6.0
 Homepage: https://github.com/SamuGallo-06/samba-configurator
 
 Package: samba-configurator
-Version: 1.0.5
+Version: 1.0.7
 Architecture: all
 Depends: ${python3:Depends}, ${misc:Depends}, python3-gi, gir1.2-gtk-4.0, samba, pkexec
 Description: GTK4 application for managing Samba shared folders
